@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { CourseService } from 'src/app/services/course.service';
 
 @Component({
   selector: 'app-todos',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodosComponent implements OnInit {
 
-  constructor() { }
+  @Input("todos") todos:string = "Meeting at 7";
+  constructor(public courseService:CourseService) { }
+
 
   ngOnInit(): void {
   }

@@ -8,17 +8,27 @@
 <!-- 
  -->
 
- <div class="container">
+<div class="container">
   <div class="row">
-  
+
     <div class="col-">
+      <app-card></app-card>
       <!--<app-card *ngFor="let course of courses" caption="{{course.title}}" summary="{{course.summary}}"></app-card>
       -->
       <!--<app-jumbotron *ngFor="let course of courses" caption="{{course.title}}" summary="{{course.summary}}">
 
       </app-jumbotron> -->
-     <app-card *ngFor="let course of courses" caption="{{course.name}}" summary="{{course.salary}}" id="{{course.id}}">        
-      </app-card>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Search Employee </span>
+        </div>
+        <input type="text" #name (keyup)="0" class="form-control" placeholder="Enter a name here" aria-label="Username"
+          aria-describedby="basic-addon1">
+      </div>
+
+      <!-- <app-card *ngFor="let course of courses | search:name.value" caption="{{course.name}}" summary="{{course.salary}}"
+        id="{{course.id}}"></app-card> -->
+
       <!-- <table class="table">
         <thead>
           <tr>
@@ -31,6 +41,10 @@
       </app-table>  
       
       </table>   -->
+      <!-- <app-card *ngFor="let course of courses" caption="{{course.title}}" summary="{{course.summary}}" id="{{course.id}}"></app-card>
+       -->
+      <!-- <app-todos></app-todos>
+       <app-todos *ngFor="let todo of todos" todos="{{todo.todos}}"></app-todos> -->
     </div>
   </div>
 </div>
