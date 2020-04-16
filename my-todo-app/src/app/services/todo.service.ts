@@ -28,5 +28,6 @@ export class TodoService {
   }
   deleteTodo(index : number){
     this.todos.splice(index,1);
+    localStorage.setItem(key,JSON.stringify(this.todos));
   }  
 }

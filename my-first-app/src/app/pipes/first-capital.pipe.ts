@@ -11,4 +11,3 @@ export class FirstCapitalPipe implements PipeTransform {
   }
 
 }
-ng

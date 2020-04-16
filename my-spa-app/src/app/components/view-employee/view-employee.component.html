@@ -1,0 +1,17 @@
+<!-- <h2>Employee Details</h2>
+<p *ngFor="let employee of employees"> {{employee.name}} - {{employee.salary}}</p> -->
+
+<div *ngIf="showMessage" class="alert alert-success" role="alert">
+  Employee has been deleted successfully!!
+</div>
+<div class="card" style="width: 18rem;" *ngFor="let employee of employees">
+    <!-- <img src="https://via.placeholder.com/100" class="card-img-top" alt="..."> -->
+  
+    <div class="card-body" >
+      <h5 class="card-title">{{employee.name}}</h5>
+      <p class="card-text"><B>ID</B> {{employee.id}}
+        <B>Salary</B> {{employee.salary}}</p>
+      <button class="btn btn-danger" (click)="deleteEmployee(employee.id)">X</button>
+      <button class="btn btn-primary" (click)="editEmployee(employee)">Edit</button>
+    </div>
+  </div>

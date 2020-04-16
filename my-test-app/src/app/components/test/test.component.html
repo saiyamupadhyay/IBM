@@ -1,0 +1,12 @@
+<p>test works!</p>
+<!-- <input type="text"  class="form-control"  (input)="onUpdateServer($event)">
+<p>{{serverName}}</p> -->
+
+<input type="text"  class="form-control"  placeholder="ngModule"
+[(ngModel)]="serverName">
+<button class = "btn btn-primary" (click)="onClickServer()">Hello</button>
+<!-- <p *ngIf="serverCreated; else noServer">{{serverStatus}}</p>
+<ng-template #noServer>
+    <p>No server was created</p>
+</ng-template> -->
+<p *ngFor="let i of servers; let it=index">saiyam</p>
