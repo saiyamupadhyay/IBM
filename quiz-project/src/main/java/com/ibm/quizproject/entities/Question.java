@@ -19,50 +19,39 @@ public class Question {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	int id;
-	String question;
-	
-	@OneToMany(targetEntity=Options.class, cascade=CascadeType.ALL)
-	@JoinColumn(name="question_id_fk",referencedColumnName="id")
-	List<Options>options;
-
-	public Question(int id, String question, List<Options> options) {
+	String text;
+	@OneToMany(cascade=CascadeType.ALL)
+	List<Choice> choices;
+	public Question(int id, String text, List<Choice> choices) {
 		super();
 		this.id = id;
-		this.question = question;
-		this.options = options;
+		this.text = text;
+		this.choices = choices;
 	}
-	
 	public Question() {
 		super();
 	}
-
-	public String getQuestion() {
-		return question;
-	}
-
-	public void setQuestion(String question) {
-		this.question = question;
-	}
-
-	public List<Options> getOptions() {
-		return options;
-	}
-
-	public void setOptions(List<Options> options) {
-		this.options = options;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public int getId() {
 		return id;
 	}
-
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String gettext() {
+		return text;
+	}
+	public void settext(String text) {
+		this.text = text;
+	}
+	public List<Choice> getChoices() {
+		return choices;
+	}
+	public void setChoices(List<Choice> choices) {
+		this.choices = choices;
+	}
 	@Override
 	public String toString() {
-		return "Quiz [id=" + id + ", question=" + question + ", options=" + options + "]";
+		return "Question [id=" + id + ", text=" + text + ", choices=" + choices + "]";
 	}
-	
+
 }
