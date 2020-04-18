@@ -1,0 +1,7 @@
+<p>view-quiz works!</p>
+<div class="card" style="width: 18rem;" *ngFor="let q of quiz">
+    <div class="card-body">
+        <h5 class="card-title">{{q.name}}</h5>
+        <button class="btn btn-primary" (click)="takeQuiz(q)">Take Quiz</button> 
+    </div>
+</div>

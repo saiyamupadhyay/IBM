@@ -3,6 +3,7 @@ import { EmployeeService } from 'src/app/services/employee.service';
 import { Employee } from 'src/app/models/employee';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { LogService } from 'src/app/services/log.service';
 
 @Component({
   selector: 'app-add-employee',
@@ -15,7 +16,7 @@ export class AddEmployeeComponent implements OnInit {
   showMessage:boolean=false;
   myForm:FormGroup;  
   editMode:boolean=false;
-  constructor(private emoloyeeService:EmployeeService,private route:ActivatedRoute) { 
+  constructor(private emoloyeeService:EmployeeService,private route:ActivatedRoute,public logService: LogService) { 
     this.myForm=new FormGroup({
       'id': new FormControl('' ,[Validators.required]),
       "name": new FormControl("",Validators.required),
@@ -67,5 +68,8 @@ export class AddEmployeeComponent implements OnInit {
         this.showMessage=true;
       }
     })
+  }
+  log(message: string){
+    this.logService.add(message)
   }
 }
