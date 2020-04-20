@@ -19,6 +19,7 @@ export class TakeQuizComponent implements OnInit {
   isFirstQuestion: boolean = false;
   answer: Array<any> = [];
   count: number = 0;
+  currentQuestionText:string;
   constructor(private route: ActivatedRoute, private quizService: QuizService,
   private router:Router) 
   { }
@@ -39,6 +40,8 @@ export class TakeQuizComponent implements OnInit {
       this.length = this.questions.length;
       console.log("questions", this.questions);
       this.currentQuestion = this.questions[this.index];
+      this.currentQuestionText = this.currentQuestion.text;
+      console.log("current question text",this.currentQuestionText)
       console.log("current question", this.currentQuestion);
       this.choices = this.currentQuestion.choices;
       console.log("current choice", this.choices);
@@ -60,6 +63,7 @@ export class TakeQuizComponent implements OnInit {
       
       console.log(this.index);
       this.currentQuestion = this.questions[this.index];
+      this.currentQuestionText = this.currentQuestion.text;
       this.choices = this.currentQuestion.choices;
       this.isLastQuestion = false;
       //  console.log("last question",this.isLastQuestion);
@@ -78,6 +82,7 @@ export class TakeQuizComponent implements OnInit {
       }
       console.log(this.index);
       this.currentQuestion = this.questions[this.index];
+      this.currentQuestionText = this.currentQuestion.text;
       this.choices = this.currentQuestion.choices;
       this.isFirstQuestion = false;
       console.log("first question", this.isFirstQuestion);
@@ -88,7 +93,7 @@ export class TakeQuizComponent implements OnInit {
     }
   }
   calculate(isAnswer: boolean) {
-    this.answer.push(isAnswer);
+    this.answer[this.index]=isAnswer;
     console.log(this.answer);
   }
   finalResult() {
@@ -101,7 +106,7 @@ export class TakeQuizComponent implements OnInit {
       }
     });
     console.log("result", this.count);
-    this.router.navigate(["viewResult",{count:this.count}]);
+    this.router.navigate(["viewResult",{count:this.count,totalQuestion:this.length}]);
 
 }
 }

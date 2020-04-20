@@ -9,12 +9,16 @@ import { ActivatedRoute } from '@angular/router';
 export class ResultComponent implements OnInit {
 
   count:string;
+  totalQuestion:string;
   constructor(private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params =>{
       this.count=params.get("count");
+      this.totalQuestion=params.get("totalQuestion");
       console.log(this.count);
+      console.log(this.totalQuestion);
+      
     })
   }
 
