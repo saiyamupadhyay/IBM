@@ -1,6 +1,5 @@
 <!-- <h2>Employee Details</h2>
 <p *ngFor="let employee of employees"> {{employee.name}} - {{employee.salary}}</p> -->
-
 <div *ngIf="showMessage" class="alert alert-success" role="alert">
   Employee has been deleted successfully!!
 </div>
@@ -8,7 +7,7 @@
   <!-- <img src="https://via.placeholder.com/100" class="card-img-top" alt="..."> -->
 
   <div class="card-body">
-    <h5 class="card-title">{{employee.name}}</h5>
+    <h5 class="card-title" >{{employee.name}}</h5>
     <p class="card-text"><B>ID</B> {{employee.id}}
       <B>Salary</B> {{employee.salary}}</p>
     <button class="btn btn-danger" (click)="deleteEmployee(employee.id)">X</button>
@@ -17,6 +16,6 @@
 </div>
 <hr/>
 <input type="text" #logMessage placeholder="Enter log message"/>
-<button (click)="log(logMessage.value)">Log Message</button>
+<button (click)="log(logMessage.value)" >Log Message</button>
 <hr/>
-<p *ngFor="let message of logService.logs">{{message}}</p>
+<p *ngFor="let message of logService.logs" appHighlight>{{message}}</p>

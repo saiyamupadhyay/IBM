@@ -19,10 +19,10 @@ export class TakeQuizComponent implements OnInit {
   isFirstQuestion: boolean = false;
   answer: Array<any> = [];
   count: number = 0;
-  currentQuestionText:string;
+  currentQuestionText: string;
+  value:number;
   constructor(private route: ActivatedRoute, private quizService: QuizService,
-  private router:Router) 
-  { }
+    private router: Router) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -35,13 +35,13 @@ export class TakeQuizComponent implements OnInit {
       console.log(this.quizName);
     })
     this.quizService.fetchSingleQuizQuestion(this.quizName).subscribe((res: any) => {
-      // console.log(res);
+      console.log(res);
       this.questions = res.questions;
       this.length = this.questions.length;
       console.log("questions", this.questions);
       this.currentQuestion = this.questions[this.index];
       this.currentQuestionText = this.currentQuestion.text;
-      console.log("current question text",this.currentQuestionText)
+      console.log("current question text", this.currentQuestionText)
       console.log("current question", this.currentQuestion);
       this.choices = this.currentQuestion.choices;
       console.log("current choice", this.choices);
@@ -56,15 +56,17 @@ export class TakeQuizComponent implements OnInit {
   nextQuestion() {
     if (this.index < this.length) {
       ++this.index;
-      if(this.index>0){
-        this.isFirstQuestion=false;
+      if (this.index > 0) {
+        this.isFirstQuestion = false;
         // console.log("from next",this.isFirstQuestion);
       }
-      
+
       console.log(this.index);
       this.currentQuestion = this.questions[this.index];
       this.currentQuestionText = this.currentQuestion.text;
       this.choices = this.currentQuestion.choices;
+      this.value=(this.index/this.length)*100;
+      console.log("value is",this.value);
       this.isLastQuestion = false;
       //  console.log("last question",this.isLastQuestion);
       if (this.index == this.length - 1) {
@@ -77,13 +79,15 @@ export class TakeQuizComponent implements OnInit {
   previousQuestion() {
     if (this.index > 0) {
       --this.index;
-      if(this.index<this.length){
-        this.isLastQuestion=false;
+      if (this.index < this.length) {
+        this.isLastQuestion = false;
       }
       console.log(this.index);
       this.currentQuestion = this.questions[this.index];
       this.currentQuestionText = this.currentQuestion.text;
       this.choices = this.currentQuestion.choices;
+      this.value=(this.index/this.length)*100;
+      console.log("value is",this.value);
       this.isFirstQuestion = false;
       console.log("first question", this.isFirstQuestion);
       if (this.index == 0) {
@@ -93,20 +97,17 @@ export class TakeQuizComponent implements OnInit {
     }
   }
   calculate(isAnswer: boolean) {
-    this.answer[this.index]=isAnswer;
+    this.answer[this.index] = isAnswer;
     console.log(this.answer);
   }
-  finalResult() {
-   
-  }
-  viewResult(){
+  viewResult() {
     this.answer.forEach(i => {
       if (i == true) {
         this.count++;
       }
     });
     console.log("result", this.count);
-    this.router.navigate(["viewResult",{count:this.count,totalQuestion:this.length}]);
+    this.router.navigate(["viewResult", { count: this.count, totalQuestion: this.length }]);
 
-}
+  }
 }

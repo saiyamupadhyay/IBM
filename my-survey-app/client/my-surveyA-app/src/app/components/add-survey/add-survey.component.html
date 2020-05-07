@@ -1,0 +1,66 @@
+Value = {{myForm.value | json}}
+
+<!-- <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <hr>
+    <div class="surveyName">
+        <input type="text" placeholder="Survey Name" formControlName="surveyName">
+    </div>
+    <div *ngIf = "surveyName.invalid && surveyName.touched">
+        survey name incorrect
+    </div> -->
+<!-- <div class="questionName">
+        <input type="text" placeholder="Question Name" formControlName="questionText">
+    </div> -->
+<!-- <div *ngIf = "questionText.invalid && questionText.touched">
+        question name incorrect
+    </div> -->
+<!-- <div formArrayName="question">
+        <div *ngFor="let op of questionForm.controls; let i=index" [formGroupName]="i">
+            <div>
+                <input type="text" placeholder="choices" formControlName="questionText">
+            </div> -->
+
+<!-- <div *ngIf = "text.invalid && text.touched">
+                option name incorrect
+            </div>    -->
+<!-- <div>
+                <button type="button" (click)="deleteOptions(i)">delete</button>
+            </div>
+        </div>
+    </div>
+    <button type="button" (click)="addQuestion()">add</button>
+    <button type="button" (click)="addOptions()">add +</button> 
+</form> -->
+
+<div class="container mt-5">
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-sm">
+                <form [formGroup]="myForm" (ngSubmit)="submit()">
+                    <label>Survey Name</label>
+                    <input type="text" formControlName="name" placeholder="survey name">
+                    <div formArrayName="questions">
+                        <div *ngFor="let person of getSurveyQuestions(myForm); let i=index">
+                            <div style="margin: 5px;" [formGroupName]="i">
+                                <label>Question {{ i + 1 }}</label>
+                                <input type="text" placeholder="Question" formControlName="text">
+                                <button *ngIf="i<1" (click)="addSurveyQuestion()" type="button">Add Question</button>
+
+                                <div formArrayName="choices">
+                                    <div *ngFor="let address of getOptions(person); let j=index">
+                                        <div [formGroupName]="j">
+                                            <span>choices {{ j + 1 }}</span>
+                                            <input type="text" placeholder="text " formControlName="text">
+                                            <button *ngIf="j<1" (click)="addOptions(i)" type="button">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

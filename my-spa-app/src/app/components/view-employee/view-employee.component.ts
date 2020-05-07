@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { Employee } from 'src/app/models/employee';
 import { Router } from '@angular/router';
+import {map, filter} from 'rxjs/operators'
 import { LogService } from 'src/app/services/log.service';
 
 @Component({
@@ -16,10 +17,19 @@ export class ViewEmployeeComponent implements OnInit {
   constructor(private employeeService:EmployeeService ,private router:Router,public logService: LogService) {}
 
   ngOnInit(): void {
-    this.employeeService.fetchAllEmployees().subscribe((res:any)=>{
+    this.employeeService.fetchAllEmployees()
+    // .pipe(filter((res:Array<Employee>)=> ), map((res:Array<Employee>) => 'Count: ' + res))
+    .pipe(map((obj:Array<Employee>) =>{console.log('In map', obj);
+      return obj.filter( emp => emp.name !== '' )
+      // console.log(filteredList)
+      // return filteredList
+      })
+    )
+    .subscribe((res:Array<Employee>)=> {
       console.log(res);
-      this.employees=res;
+      this.employees = res;
     })
+
   }
   deleteEmployee(id: number){
     this.employeeService.deleteEmployee(id)

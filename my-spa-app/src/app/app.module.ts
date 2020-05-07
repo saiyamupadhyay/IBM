@@ -8,9 +8,12 @@ import { ViewEmployeeComponent } from './components/view-employee/view-employee.
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {Routes, RouterModule} from '@angular/router'
 import { HttpClientModule } from '@angular/common/http';
+import { OverveComponent } from './components/overve/overve.component';
+import { HighlightDirective } from './directives/highlight.directive';
 
 const appRoutes: Routes = [
   { path: 'add', component:  AddEmployeeComponent},
+  { path: 'observe', component: OverveComponent},
   { path: 'view',component: ViewEmployeeComponent },
   
 ];
@@ -20,6 +23,8 @@ const appRoutes: Routes = [
     AppComponent,
     AddEmployeeComponent,
     ViewEmployeeComponent,
+    OverveComponent,
+    HighlightDirective,
     
   ],
   imports: [
